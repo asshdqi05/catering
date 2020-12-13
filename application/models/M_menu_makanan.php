@@ -49,7 +49,7 @@ class M_menu_makanan extends CI_Model
         $id_menu = $post["kode"];
         $nama_menu = $post["nama_menu"];
         $hari = $post["hari"];
-        return $this->db->query("UPDATE menu SET nama_menu='$nama_menu',hari='$hari', foto_makanan='$new_foto' where id_menu='$id_menu'");
+        return $this->db->query("UPDATE menu_makanan SET nama_menu='$nama_menu',hari='$hari', foto_makanan='$new_foto' where id_menu='$id_menu'");
     }
 
     public function delete($id)

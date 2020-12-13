@@ -63,26 +63,26 @@ class C_menu_makanan extends CI_Controller
             $this->upload->initialize($config);
 
             if ($this->upload->do_upload('foto')) {
-                $old = $data['foto_makanan'];
-                if ($old != $old_foto) {
-                    unlink(FCPATH . 'foto/foto_menu/' . $old);
-                }
+                unlink(FCPATH . 'foto/foto_menu/' . $old_foto);
                 $new_foto = $this->upload->data('file_name');
-                $this->mu->update($new_foto);
-                $this->session->set_flashdata('msg', success('Data berhasil disimpan.'));
-                redirect('C_menu_makanan');
             } else {
                 echo $this->upload->display_errors();
+                $new_foto = $this->input->post("old_foto");;
             }
         }
+        $this->mu->update($new_foto);
+        $this->session->set_flashdata('msg', success('Data berhasil Diupdate.'));
+        redirect('C_menu_makanan');
     }
 
     public function delete()
     {
         $id = $this->input->post('kode');
+        $hfoto = $this->input->post("foto");
         if (!$this->mu->delete($id)) {
             $this->session->set_flashdata('msg', danger('Data gagal dihapus.'));
         } else {
+            unlink(FCPATH . 'foto/foto_menu/' . $hfoto);
             $this->session->set_flashdata('msg', info('Data berhasil dihapus.'));
         }
         redirect('C_menu_makanan');

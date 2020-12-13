@@ -29,7 +29,7 @@
                                 <td><?php echo $d['id_menu'] ?></td>
                                 <td><?php echo $d['nama_menu'] ?></td>
                                 <td><?php echo $d['hari'] ?></td>
-                                <td><img width="100" height="100" style="border:10px double gray;" src="<?php echo base_url('foto/foto_menu/') . $d['foto_makanan']; ?>"></td>
+                                <td><img width="100" height="100" src="<?php echo base_url('foto/foto_menu/') . $d['foto_makanan']; ?>"></td>
                                 <td class="text-center" width="100px">
                                     <a href="javascript:void(0)" onclick="edit( '<?php echo $d['id_menu'] ?>',
                                                                                 '<?php echo $d['nama_menu'] ?>',
@@ -37,7 +37,7 @@
                                                                                 '<?php echo $d['foto_makanan'] ?>')">
                                         <i class="fa fa-pencil" style="color: #3c763d"></i>
                                     </a>
-                                    <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_menu'] ?>','<?php echo $d['nama_menu'] ?>')">
+                                    <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_menu'] ?>','<?php echo $d['nama_menu'] ?>','<?php echo $d['foto_makanan'] ?>')">
                                         <i class="fa fa-trash" style="color: #ea6565"></i>
                                     </a>
                                 </td>
@@ -61,9 +61,10 @@
         $('#edit_data').modal('show');
     }
 
-    function hapus(kode, nama) {
+    function hapus(kode, nama, foto) {
         $('#hkode').val(kode);
         $('#hnama').html(nama);
+        $('#hfoto').val(foto);
         $('#hapus_data').modal('show');
     }
 </script>
@@ -116,7 +117,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Data menu</h4>
             </div>
-            <form role="form" method="POST" action="<?php echo site_url('C_menu_makanan/edit') ?>">
+            <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo site_url('C_menu_makanan/edit') ?>">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama menu</label>
@@ -163,6 +164,7 @@
             <form method="POST" action="<?php echo site_url('C_menu_makanan/delete') ?>">
                 <div class="modal-body">
                     <input type="hidden" name="kode" id="hkode">
+                    <input type="hidden" name="foto" id="hfoto">
                     Anda yakin hapus data <strong><span id="hnama"></span></strong> ?
                 </div>
                 <div class="modal-footer">
