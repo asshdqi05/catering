@@ -26,8 +26,6 @@ class M_pelanggan extends CI_Model
         return $this->db->query("SELECT * FROM pelanggan ");
     }
 
-
-
     public function getById($id)
     {
         return $this->db->get_where($this->_table, ["no" => $id])->row();
@@ -35,7 +33,7 @@ class M_pelanggan extends CI_Model
 
 
 
-    public function save()
+    public function save($nama, $email, $telpon)
     {
         $kode = $this->kode();
         $post = $this->input->post();
@@ -45,6 +43,13 @@ class M_pelanggan extends CI_Model
         $nohp = $post["nohp"];
         $email = $post["email"];
         return $this->db->query("INSERT INTO pelanggan VALUES('$id_pelanggan','$nama_pelanggan','$alamat','$nohp','$email')");
+        return $this->db->query("INSERT INTO pelanggan VALUES('','$nama','','$telpon','$email','','0')");
+    }
+
+    public function saveregister($nama, $email, $telpon, $alamat, $password)
+    {
+        $kode = $this->kode();
+        return $this->db->query("INSERT INTO pelanggan VALUES('$kode','$nama','$alamat','$telpon','$email','$password','0')");
     }
 
     public function update()
@@ -61,5 +66,10 @@ class M_pelanggan extends CI_Model
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id_pelanggan" => $id));
+    }
+
+    function knf($email)
+    {
+        return $this->db->query("UPDATE pelanggan SET status='1' where email='$email'");
     }
 }
