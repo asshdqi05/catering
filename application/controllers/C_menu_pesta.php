@@ -2,13 +2,13 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class C_menu_makanan extends CI_Controller
+class C_menu_pesta extends CI_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_menu_makanan', 'mu');
+        $this->load->model('M_menu_pesta', 'mu');
         $this->load->library('upload');
 
         //Do your magic here
@@ -19,9 +19,9 @@ class C_menu_makanan extends CI_Controller
         $d['datamenu']   = $this->mu->getAll();
 
         $tempelate = array(
-            'mn_menu_makanan' => 'active',
-            'judul' => 'Data menu Makanan',
-            'konten' => $this->load->view('admin/V_menu_makanan', $d, true)
+            'mn_menu_pesta' => 'active',
+            'judul' => 'Data menu',
+            'konten' => $this->load->view('admin/V_menu_pesta', $d, true)
         );
         $this->parser->parse('admin/template/V_home_admin', $tempelate);
     }
@@ -40,7 +40,7 @@ class C_menu_makanan extends CI_Controller
                 $new_foto = $this->upload->data('file_name');
                 $this->mu->save($new_foto);
                 $this->session->set_flashdata('msg', success('Data berhasil disimpan.'));
-                redirect('C_menu_makanan');
+                redirect('C_menu_pesta');
             } else {
                 echo $this->upload->display_errors();
             }
@@ -53,7 +53,7 @@ class C_menu_makanan extends CI_Controller
         $upload_image = $_FILES['foto'];
 
         $id = $this->input->post("kode");
-        $data = $this->db->get_where('menu_makanan', ['id_menu' => $id])->row_array();
+        $data = $this->db->get_where('menu_pesta', ['id_menu_pesta' => $id])->row_array();
         $old_foto = $this->input->post("old_foto");
 
         if ($upload_image) {
@@ -72,7 +72,7 @@ class C_menu_makanan extends CI_Controller
         }
         $this->mu->update($new_foto);
         $this->session->set_flashdata('msg', success('Data berhasil Diupdate.'));
-        redirect('C_menu_makanan');
+        redirect('C_menu_pesta');
     }
 
     public function delete()
@@ -85,7 +85,7 @@ class C_menu_makanan extends CI_Controller
             unlink(FCPATH . 'foto/foto_menu/' . $hfoto);
             $this->session->set_flashdata('msg', info('Data berhasil dihapus.'));
         }
-        redirect('C_menu_makanan');
+        redirect('C_menu_pesta');
     }
 }
         

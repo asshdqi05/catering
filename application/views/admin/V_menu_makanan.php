@@ -6,17 +6,16 @@
                     <span class="fa fa-plus"></span>
                     Tambah Data
                 </button>
-
             </div>
-
             <div class="card-body">
                 <?php echo $this->session->flashdata('msg'); ?>
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <th class="text-center">No</th>
                         <th>ID Menu</th>
-                        <th>Nama menu</th>
                         <th>Hari</th>
+                        <th>Nama menu</th>
+                        <th>Harga</th>
                         <th>Foto Menu</th>
                         <th class="text-center">Aksi</th>
                     </thead>
@@ -27,17 +26,19 @@
                             <tr>
                                 <td width="50px" class="text-center"><?php echo $no . '.'; ?></td>
                                 <td><?php echo $d['id_menu'] ?></td>
-                                <td><?php echo $d['nama_menu'] ?></td>
                                 <td><?php echo $d['hari'] ?></td>
+                                <td><?php echo $d['nama_menu'] ?></td>
+                                <td><?php echo $d['harga'] ?></td>
                                 <td><img width="100" height="100" src="<?php echo base_url('foto/foto_menu/') . $d['foto_makanan']; ?>"></td>
                                 <td class="text-center" width="100px">
                                     <a href="javascript:void(0)" onclick="edit( '<?php echo $d['id_menu'] ?>',
-                                                                                '<?php echo $d['nama_menu'] ?>',
                                                                                 '<?php echo $d['hari'] ?>',
+                                                                                '<?php echo $d['nama_menu'] ?>',
+                                                                                '<?php echo $d['harga'] ?>',
                                                                                 '<?php echo $d['foto_makanan'] ?>')">
                                         <i class="fa fa-pencil" style="color: #3c763d"></i>
                                     </a>
-                                    <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_menu'] ?>','<?php echo $d['nama_menu'] ?>','<?php echo $d['foto_makanan'] ?>')">
+                                    <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_menu'] ?>','<?php echo $d['hari'] ?>','<?php echo $d['nama_menu'] ?>','<?php echo $d['harga'] ?>','<?php echo $d['foto_makanan'] ?>')">
                                         <i class="fa fa-trash" style="color: #ea6565"></i>
                                     </a>
                                 </td>
@@ -53,10 +54,11 @@
 </div>
 
 <script>
-    function edit(kode, nama, hari, foto) {
+    function edit(kode, hari, nama, harga, foto) {
         $('#ekode').val(kode);
-        $('#enama').val(nama);
         $('#ehari').val(hari);
+        $('#enama').val(nama);
+        $('#eharga').val(harga);
         $('#efoto').val(foto);
         $('#edit_data').modal('show');
     }
@@ -79,12 +81,9 @@
             <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo site_url('C_menu_makanan/add') ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama menu</label>
-                        <input type="text" name="nama_menu" class="form-control">
-                    </div>
-                    <div class="form-group">
                         <label>Hari</label>
                         <select name="hari" id="" class="form-control">
+                            <option disabled selected>PILIH</option>
                             <option value="senin">Senin</option>
                             <option value="selasa">Selasa</option>
                             <option value="rabu">Rabu</option>
@@ -93,6 +92,14 @@
                             <option value="sabtu">Sabtu</option>
                             <option value="minggu">Minggu</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama menu</label>
+                        <input type="text" name="nama_menu" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <input type="text" name="harga" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Foto Menu</label>
@@ -120,14 +127,9 @@
             <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo site_url('C_menu_makanan/edit') ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama menu</label>
-                        <input type="hidden" name="kode" id="ekode" class="form-control">
-                        <input type="text" name="nama_menu" id="enama" class="form-control">
-                    </div>
-
-                    <div class="form-group">
                         <label>Hari</label>
                         <select name="hari" id="ehari" class="form-control">
+                            <option disabled>PILIH</option>
                             <option value="senin">Senin</option>
                             <option value="selasa">Selasa</option>
                             <option value="rabu">Rabu</option>
@@ -137,6 +139,17 @@
                             <option value="minggu">Minggu</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label>Nama menu</label>
+                        <input type="hidden" name="kode" id="ekode" class="form-control">
+                        <input type="text" name="nama_menu" id="enama" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Harga</label>
+                        <input type="hidden" name="kode" id="ekode" class="form-control">
+                        <input type="text" name="harga" id="eharga" class="form-control">
+                    </div>
+
                     <div class="form-group">
                         <label>Foto Menu</label>
                         <input type="file" name="foto" class="form-control">

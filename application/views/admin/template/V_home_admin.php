@@ -130,7 +130,7 @@ $level = $this->session->userdata('level');
       <div class="float-right d-none d-sm-block">
         <b style="color: black">Version</b> 1.0.0
       </div>
-      <strong style="color: black">Copyright &copy; <?= date('Y') ?> <b style="color: black">DNA Futsal</b>.</strong> <small style="color: black"> All rights
+      <strong style="color: black">Copyright &copy; <?= date('Y') ?> <b style="color: black">DF Catering</b>.</strong> <small style="color: black"> All rights
         reserved.</small>
     </footer>
 

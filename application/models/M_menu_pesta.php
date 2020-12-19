@@ -1,15 +1,15 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_menu_makanan extends CI_Model
+class M_menu_pesta extends CI_Model
 {
-    private $_table = "menu_makanan";
+    private $_table = "menu_pesta";
 
     public function kode()
     {
-        $this->db->select('RIGHT(id_menu,3) as kode', FALSE);
-        $this->db->order_by('id_menu', 'DESC');
+        $this->db->select('RIGHT(id_menu_pesta,3) as kode', FALSE);
+        $this->db->order_by('id_menu_pesta', 'DESC');
         $this->db->limit(1);
-        $query = $this->db->get('menu_makanan');
+        $query = $this->db->get('menu_pesta');
         if ($query->num_rows() <> 0) {
             $dt = $query->row();
             $kode = intval($dt->kode) + 1;
@@ -17,7 +17,7 @@ class M_menu_makanan extends CI_Model
             $kode = 1;
         }
         $kodemax  = str_pad($kode, 5, "0", STR_PAD_LEFT);
-        $kodejadi = "MN-" . $kodemax;
+        $kodejadi = "MP-" . $kodemax;
         return $kodejadi;
     }
 
@@ -39,9 +39,8 @@ class M_menu_makanan extends CI_Model
         $post = $this->input->post();
         $id_menu = $kode;
         $hari = $post["hari"];
-        $nama_menu = $post["nama_menu"];
-        $harga = $post["harga"];
-        return $this->db->query("INSERT INTO menu_makanan VALUES('$id_menu','$hari','$nama_menu','$harga','$new_foto')");
+        $detail_menu = $post["detail_menu"];
+        return $this->db->query("INSERT INTO menu_pesta VALUES('$id_menu_pesta','$hari','$detail_menu','$new_foto')");
     }
 
     public function update($new_foto)
@@ -49,13 +48,12 @@ class M_menu_makanan extends CI_Model
         $post = $this->input->post();
         $id_menu = $post["kode"];
         $hari = $post["hari"];
-        $nama_menu = $post["nama_menu"];
-        $harga = $post["harga"];
-        return $this->db->query("UPDATE menu_makanan SET hari='$hari',nama_menu='$nama_menu',harga='$harga', foto_makanan='$new_foto' where id_menu='$id_menu'");
+        $detail_menu = $post["detail_menu"];
+        return $this->db->query("UPDATE menu_pesta SET detail_menu='$detail_menu',hari='$hari', foto_pesta='$new_foto' where id_menu='$id_menu'");
     }
 
     public function delete($id)
     {
-        return $this->db->delete($this->_table, array("id_menu" => $id));
+        return $this->db->delete($this->_table, array("id_menu_pesta" => $id));
     }
 }

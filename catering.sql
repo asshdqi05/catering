@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.09 (32 bit)
-MySQL - 10.4.13-MariaDB : Database - catering
+MySQL - 10.4.16-MariaDB : Database - catering
 *********************************************************************
 */
 
@@ -58,7 +58,7 @@ CREATE TABLE `karyawan` (
 
 /*Data for the table `karyawan` */
 
-insert  into `karyawan`(`id_karyawan`,`nama_karyawan`,`no_hp`,`alamat`,`jabatan`) values ('KR-00001','aa','333','aaa',1);
+insert  into `karyawan`(`id_karyawan`,`nama_karyawan`,`no_hp`,`alamat`,`jabatan`) values ('KR-00001','budi','09844','Padang',2),('KR-00002','yuni','1233','Bengkulu',1),('KR-00003','Dajon','09454','Pariaman',3),('KR-00004','Jordy','12434','Meksiko',4);
 
 /*Table structure for table `level_user` */
 
@@ -80,15 +80,16 @@ DROP TABLE IF EXISTS `menu_makanan`;
 
 CREATE TABLE `menu_makanan` (
   `id_menu` char(10) NOT NULL,
+  `hari` varchar(20) DEFAULT NULL,
   `nama_menu` varchar(255) DEFAULT NULL,
-  `hari` varchar(255) DEFAULT NULL,
+  `harga` double DEFAULT NULL,
   `foto_makanan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_menu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `menu_makanan` */
 
-insert  into `menu_makanan`(`id_menu`,`nama_menu`,`hari`,`foto_makanan`) values ('MN-00001','Rendang Ayam','senin','Rendang_Ayam.jpg');
+insert  into `menu_makanan`(`id_menu`,`hari`,`nama_menu`,`harga`,`foto_makanan`) values ('MN-00001','senin','Rendang Ayam',10000,'Rendang_Ayam.jpg'),('MN-00002','senin','Cah Kangkung',10000,'cah_kangkung.jpg'),('MN-00003','selasa','Ayam goreng balado',10000,'Ayam_Balado.jpg'),('MN-00004','selasa','Gulai Cubadak',10000,'gulai_cubadak.jpg'),('MN-00005','rabu','Gulai Cancang',10000,'gulai_cancang.jpeg'),('MN-00006','rabu','Anyang',10000,'anyang.jpg'),('MN-00007','kamis','Ikan bakar',10000,'ikan_bakar.jpg'),('MN-00008','kamis','Tumis Tauge',10000,'Tumis_tauge.jpg'),('MN-00009','jumat','Rendang',10000,'rendang.jpg'),('MN-00010','jumat','Gulai Singkong',10000,'Gulai_Singkong.jpg'),('MN-00011','sabtu','Pangek Padeh',10000,'pangek_padeh.jpg'),('MN-00012','sabtu','Gulai Paku',10000,'gulai_paku.jpg'),('MN-00013','minggu','Dendeng Lado Hijau',10000,'dendeng_lado_hijau.jpg'),('MN-00014','minggu','Sayur Asam',10000,'Sayur_Asam.jpg');
 
 /*Table structure for table `pelanggan` */
 
@@ -100,10 +101,26 @@ CREATE TABLE `pelanggan` (
   `alamat` varchar(99) DEFAULT NULL,
   `nohp` char(15) DEFAULT NULL,
   `email` varchar(99) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `status` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`id_pelanggan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pelanggan` */
+
+/*Table structure for table `pengeluaran` */
+
+DROP TABLE IF EXISTS `pengeluaran`;
+
+CREATE TABLE `pengeluaran` (
+  `id_pengeluaran` char(10) NOT NULL,
+  `tanggal` date DEFAULT NULL,
+  `jumlah` double DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_pengeluaran`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `pengeluaran` */
 
 /*Table structure for table `user` */
 

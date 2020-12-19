@@ -27,6 +27,15 @@
     </a>
   </li>
 
+  <!-- <li class="nav-item user-panel">
+    <a href="<?php echo site_url('C_menu_pesta') ?>" class="nav-link 
+        <?php if (isset($mn_menu_pesta)) echo $mn_menu_pesta;
+        else echo ""; ?>">
+      <i class="fa fa-book"></i>
+      <p>Menu Pesta</p>
+    </a>
+  </li> -->
+
   <li class="nav-item user-panel">
     <a href="<?php echo site_url('C_pelanggan') ?>" class="nav-link 
         <?php if (isset($mn_pelanggan)) echo $mn_pelanggan;
@@ -45,12 +54,12 @@
     </a>
   </li>
 
-  <li class="nav-item user-panel">
-    <a href="<?php echo site_url('C_user') ?>" class="nav-link 
-        <?php if (isset($mn_user)) echo $mn_user;
+  <li class=" nav-item user-panel">
+    <a href="<?php echo site_url('C_pengeluaran') ?>" class="nav-link
+        <?php if (isset($mn_pengeluaran)) echo $mn_pengeluaran;
         else echo ""; ?>">
-      <i class="fa fa-user"></i>
-      <p>Data User</p>
+      <i class="fa fa-money"></i>
+      <p>Data Pengeluaran</p>
     </a>
   </li>
 
@@ -58,8 +67,17 @@
     <a href="<?php echo site_url('C_karyawan') ?>" class="nav-link 
         <?php if (isset($mn_karyawan)) echo $mn_karyawan;
         else echo ""; ?>">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-spoon"></i>
       <p>Data Karyawan</p>
+    </a>
+  </li>
+
+  <li class="nav-item user-panel">
+    <a href="<?php echo site_url('C_user') ?>" class="nav-link 
+        <?php if (isset($mn_user)) echo $mn_user;
+        else echo ""; ?>">
+      <i class="fa fa-user"></i>
+      <p>Data User</p>
     </a>
   </li>
 

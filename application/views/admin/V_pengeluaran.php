@@ -14,33 +14,30 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <th class="text-center">No</th>
-                        <th>ID karyawan</th>
-                        <th>Nama karyawan</th>
-                        <th>NOHP</th>
-                        <th>alamat</th>
-                        <th>jabatan</th>
+                        <th>ID pengeluaran</th>
+                        <th>Tanggal</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
                         <th class="text-center">Aksi</th>
                     </thead>
 
                     <tbody>
                         <?php $no = 1;
-                        foreach ($datakaryawan->result_array() as $d) { ?>
+                        foreach ($datapengeluaran->result_array() as $d) { ?>
                             <tr>
                                 <td width="50px" class="text-center"><?php echo $no . '.'; ?></td>
-                                <td><?php echo $d['id_karyawan'] ?></td>
-                                <td><?php echo $d['nama_karyawan'] ?></td>
-                                <td><?php echo $d['no_hp'] ?></td>
-                                <td><?php echo $d['alamat'] ?></td>
-                                <td><?php echo $d['nama_jabatan'] ?></td>
+                                <td><?php echo $d['id_pengeluaran'] ?></td>
+                                <td><?php echo $d['tanggal'] ?></td>
+                                <td><?php echo $d['jumlah'] ?></td>
+                                <td><?php echo $d['keterangan'] ?></td>
                                 <td class="text-center" width="100px">
-                                    <a href="javascript:void(0)" onclick="edit( '<?php echo $d['id_karyawan'] ?>',
-                                                                                '<?php echo $d['nama_karyawan'] ?>', 
-                                                                                '<?php echo $d['no_hp'] ?>', 
-                                                                                '<?php echo $d['alamat'] ?>',
-                                                                                '<?php echo $d['jabatan'] ?>')">
+                                    <a href="javascript:void(0)" onclick="edit( '<?php echo $d['id_pengeluaran'] ?>',
+                                                                                '<?php echo $d['tanggal'] ?>',
+                                                                                '<?php echo $d['jumlah'] ?>',                                                                                 
+                                                                                '<?php echo $d['keterangan'] ?>')">
                                         <i class="fa fa-pencil" style="color: #3c763d"></i>
                                     </a>
-                                    <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_karyawan'] ?>','<?php echo $d['nama_karyawan'] ?>')">
+                                    <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_pengeluaran'] ?>','<?php echo $d['keterangan'] ?>')">
                                         <i class="fa fa-trash" style="color: #ea6565"></i>
                                     </a>
                                 </td>
@@ -56,18 +53,17 @@
 </div>
 
 <script>
-    function edit(kode, nama, nohp, alamat, jabatan) {
+    function edit(kode, tanggal, jumlah, keterangan) {
         $('#ekode').val(kode);
-        $('#enama').val(nama);
-        $('#enohp').val(nohp);
-        $('#ealamat').val(alamat);
-        $('#ealamat').val(alamat);
+        $('#etanggal').val(tanggal);
+        $('#ejumlah').val(jumlah);
+        $('#eketerangan').val(keterangan);
         $('#edit_data').modal('show');
     }
 
-    function hapus(kode, nama) {
+    function hapus(kode, keterangan) {
         $('#hkode').val(kode);
-        $('#hnama').html(nama);
+        $('#hketerangan').html(keterangan);
         $('#hapus_data').modal('show');
     }
 </script>
@@ -76,38 +72,23 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Input Data karyawan</h4>
+                <h4 class="modal-title">Input Data pengeluaran</h4>
                 <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <form role="form" method="POST" action="<?php echo site_url('C_karyawan/add') ?>">
+            <form role="form" method="POST" action="<?php echo site_url('C_pengeluaran/add') ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama karyawan</label>
-                        <input type="text" name="nama" class="form-control">
+                        <label>Tanggal</label>
+                        <input type="date" name="tanggal" class="form-control">
                     </div>
-
                     <div class="form-group">
-                        <label>Nohp</label>
-                        <input type="text" name="nohp" class="form-control">
+                        <label>jumlah</label>
+                        <textarea name="jumlah" class="form-control"></textarea>
                     </div>
-
                     <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="alamat" class="form-control"></textarea>
+                        <label>keterangan</label>
+                        <input type="text" name="keterangan" class="form-control">
                     </div>
-
-                    <div class="form-group">
-                        <label>Jabatan</label>
-                        <select name="jabatan" class="form-control">
-                            <option>-Pilih-</option>
-                            <?php
-                            foreach ($datajabatan->result_array() as $d) { ?>
-                                <option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d["nama_jabatan"]; ?></option>
-                            <?php } ?>
-
-                        </select>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"><i class="icon-floppy-disk"></i> Simpan</button>
@@ -118,39 +99,29 @@
     </div>
 </div>
 
+
+
 <div class="modal fade" id="edit_data">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Data karyawan</h4>
+                <h4 class="modal-title">Data pengeluaran</h4>
             </div>
-            <form role="form" method="POST" action="<?php echo site_url('C_karyawan/edit') ?>">
+            <form role="form" method="POST" action="<?php echo site_url('C_pengeluaran/edit') ?>">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama karyawan</label>
+                        <label>Nama pengeluaran</label>
                         <input type="hidden" name="kode" id="ekode" class="form-control">
-                        <input type="text" name="nama" id="enama" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nohp</label>
-                        <input type="text" name="karyawanname" id="enohp" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label>alamat</label>
-                        <textarea name="alamat" id="ealamat" class="form-control"></textarea>
+                        <input type="date" name="tanggal" id="etanggal" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Jabatan</label>
-                        <select name="jabatan" id="ejabatan" class="form-control">
-                            <option>-Pilih-</option>
-                            <?php
-                            foreach ($datajabatan->result_array() as $d) { ?>
-                                <option value="<?php echo $d['id_jabatan']; ?>"><?php echo $d["nama_jabatan"]; ?></option>
-                            <?php } ?>
-                        </select>
+                        <label>jumlah</label>
+                        <textarea name="jumlah" id="ejumlah" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>keterangan</label>
+                        <input type="text" name="keterangan" id="eketerangan" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -171,10 +142,10 @@
                     <span aria-hidden="true"></span>
                 </button>
             </div>
-            <form method="POST" action="<?php echo site_url('C_karyawan/delete') ?>">
+            <form method="POST" action="<?php echo site_url('C_pengeluaran/delete') ?>">
                 <div class="modal-body">
                     <input type="hidden" name="kode" id="hkode">
-                    Anda yakin hapus data <strong><span id="hnama"></span></strong> ?
+                    Anda yakin hapus data <strong><span id="hketerangan"></span></strong> ?
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary"><i class="icon-trash"></i> Hapus</button>
