@@ -143,7 +143,6 @@ class C_home_front extends CI_Controller
         </script>
 <?php
 
-
     }
 }
         
