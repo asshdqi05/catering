@@ -45,7 +45,7 @@ class C_login extends CI_Controller
             } else {
                 $this->session->set_flashdata('msg', Danger('Username Atau Password Salah!!!'));
 
-                redirect('admin/C_login');
+                redirect('C_login');
             }
         }
     }

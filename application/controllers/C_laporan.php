@@ -50,8 +50,8 @@ class C_laporan extends CI_Controller
         $tanggal_akhir    = date("Y-m-d", strtotime($tgl_akhir));
         $data['tgla'] = $tgl_awal;
         $data['tglb'] = $tgl_akhir;
-        $data['data_pesta'] = $this->ml->get_pemesanan_pesta_perperiode($tanggal_awal, $tanggal_akhir);
-        $data['data_harian'] = $this->ml->get_pemesanan_harian_perperiode($tanggal_awal, $tanggal_akhir);
+        $data['data_pesta'] = $this->ml->get_pendapatan_pesta_perperiode($tanggal_awal, $tanggal_akhir);
+        $data['data_harian'] = $this->ml->get_pendapatan_harian_perperiode($tanggal_awal, $tanggal_akhir);
         $this->load->view('admin/laporan/V_laporan_pendapatan_perperiode', $data);
     }
 

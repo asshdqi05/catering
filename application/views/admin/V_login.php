@@ -35,7 +35,7 @@
                     <b class="text-black">Silahkan masuk ke akun anda!!</b>
                 </p>
 
-                <?php echo form_open(site_url('C_login/masuk')) ?>
+                <?php echo form_open(base_url('C_login/masuk')) ?>
                 <?php echo $this->session->flashdata('msg'); ?>
                 <div class="input-group mb-3">
                     <input type="text" name="un" class="form-control" placeholder="Username">

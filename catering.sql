@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v8.55 
-MySQL - 5.5.5-10.4.14-MariaDB : Database - catering
+MySQL - 5.5.5-10.4.17-MariaDB : Database - catering
 *********************************************************************
 */
 
@@ -236,6 +236,8 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user` */
+
+insert  into `user`(`id_user`,`nama_user`,`username_user`,`password_user`,`level_user`) values ('admin','admin','admin','21232f297a57a5a743894a0e4a801fc3',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
