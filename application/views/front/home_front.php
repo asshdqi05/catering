@@ -34,6 +34,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+    <style>
+        .dropdown-menu {
+            background-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
@@ -52,17 +57,26 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo mr-auto"><a href="index.html">DF Catering</a></h1>
+            <h1 class="logo mr-auto"><a href="<?= base_url() ?>">DF Catering</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="<?= base_url() ?>">Home</a></li>
                     <!-- <li><a href="#about">About</a></li> -->
                     <li><a href="#menu">Menu</a></li>
                     <!-- <li><a href="#gallery">Gallery</a></li> -->
                     <li><a href="#contact">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Konfirmasi
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?= base_url("Konfirmasi/harian") ?>">Harian</a>
+                            <a class="dropdown-item" href="<?= base_url("Konfirmasi/pesta") ?>">Pesta</a>
+                        </div>
+                    </li>
                     <?php
                     if ($this->session->email != '') {
                     ?>
@@ -110,113 +124,58 @@
 
                 <div class="section-title">
                     <h2>Menu</h2>
-                    <p>Check Our Tasty Menu</p>
+                    <!-- <p>Check Our Tasty Menu</p> -->
                 </div>
 
                 <div class="row" data-aos="fade-up" data-aos-delay="100">
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="menu-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-starters">Starters</li>
-                            <li data-filter=".filter-salads">Salads</li>
-                            <li data-filter=".filter-specialty">Specialty</li>
+                            <li data-filter=".filter-senin">Senin</li>
+                            <li data-filter=".filter-selasa">Selasa</li>
+                            <li data-filter=".filter-rabu">Rabu</li>
+                            <li data-filter=".filter-selasa">Kamis</li>
+                            <li data-filter=".filter-jumat">Jumat</li>
+                            <li data-filter=".filter-sabtu">Sabtu</li>
+                            <li data-filter=".filter-minggu">Minggu</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                    <?php
 
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Lobster Bisque</a><span>$5.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
+                    $query =  $this->db->query("SELECT * FROM menu_makanan");
 
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <img src="assets/img/menu/bread-barrel.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Bread Barrel</a><span>$6.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
+                    foreach ($query->result_array() as $row) {
 
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <img src="assets/img/menu/cake.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Crab Cake</a><span>$7.95</span>
+                    ?>
+                        <div class="col-lg-6 menu-item filter-<?= $row['hari'] ?>">
+                            <img src="<?= base_url('foto/foto_menu/' . $row['foto_makanan']) ?>" class="menu-img" alt="">
+                            <div class="menu-content">
+                                <a href="#"><?= $row['nama_menu'] ?></a><span>Rp. <?= number_format($row['harga'], 0, ',', '.') ?></span>
+                            </div>
+                            <!-- <div class="menu-ingredients">
+                                Lorem, deren, trataro, filede, nerada
+                            </div> -->
                         </div>
-                        <div class="menu-ingredients">
-                            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-                        </div>
-                    </div>
 
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <img src="assets/img/menu/caesar.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Caesar Selections</a><span>$8.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
+                    <?php } ?>
 
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <img src="assets/img/menu/tuscan-grilled.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Tuscan Grilled</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Grilled chicken with provolone, artichoke hearts, and roasted red pesto
-                        </div>
-                    </div>
 
-                    <div class="col-lg-6 menu-item filter-starters">
-                        <img src="assets/img/menu/mozzarella.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Mozzarella Stick</a><span>$4.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Lorem, deren, trataro, filede, nerada
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <img src="assets/img/menu/greek-salad.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Greek Salad</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Fresh spinach, crisp romaine, tomatoes, and Greek olives
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-salads">
-                        <img src="assets/img/menu/spinach-salad.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Spinach Salad</a><span>$9.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 menu-item filter-specialty">
-                        <img src="assets/img/menu/lobster-roll.jpg" class="menu-img" alt="">
-                        <div class="menu-content">
-                            <a href="#">Lobster Roll</a><span>$12.95</span>
-                        </div>
-                        <div class="menu-ingredients">
-                            Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
-                        </div>
-                    </div>
 
                 </div>
+                <br>
+                <table align="center">
+                    <td>
+                        <center> <a target="_blank" href="<?= base_url('C_home_front/harian') ?>" class="btn btn-warning" style="width: 150px;">Pesan Harian</a></center>
+                    </td>
+                    <td>
+                        <center> <a target="_blank" href="<?= base_url('C_home_front/pesta') ?>" class="btn btn-warning" style="width: 150px;">Pesan Pesta</a></center>
+                    </td>
+                </table>
+
+
 
             </div>
         </section><!-- End Menu Section -->

@@ -104,7 +104,7 @@ class C_home_front extends CI_Controller
             $total = $cek->num_rows();
             if ($total > 0) {
 
-                $this->session->set_userdata(array('email' => $row['email'], 'level' => 'konsumen'));
+                $this->session->set_userdata(array('email' => $row['email'], 'level' => 'konsumen', 'id' => $row['id_pelanggan']));
             ?>
                 <script>
                     alert("Anda Berhasil Login");
@@ -141,8 +141,137 @@ class C_home_front extends CI_Controller
             alert("Email Berhasil di Daftarkan");
             document.location.href = '<?= base_url() ?>';
         </script>
-<?php
+        <?php
 
+    }
+
+    function harian()
+    {
+        if ($this->session->email == "") {
+        ?>
+            <script>
+                alert("Silahkan Login Dahulu");
+                document.location.href = '<?= base_url() ?>';
+            </script>
+        <?php
+        } else {
+            $this->template->load('front/base', 'front/isiharian');
+        }
+    }
+
+    function pesta()
+    {
+        if ($this->session->email == "") {
+        ?>
+            <script>
+                alert("Silahkan Login Dahulu");
+                document.location.href = '<?= base_url() ?>';
+            </script>
+        <?php
+        } else {
+            $this->template->load('front/base', 'front/isipesta');
+        }
+    }
+
+    function menuhari()
+    {
+        $hari = $_POST['hari'];
+        $que = $this->db->query("SELECT * FROM menu_makanan where hari='$hari' and id_menu NOT IN (SELECT tmp_id_menu FROM tmp_pesan_harian)");
+
+        foreach ($que->result_array() as $row) { ?>
+            <option value="<?php echo $row["id_menu"] ?>"><?php echo $row["nama_menu"] ?></option>
+        <?php }
+    }
+
+    public function simpantmp()
+    {
+        $idmenu = $_POST['namamenu'];
+        $qu = $this->db->query("SELECT * FROM menu_makanan where id_menu = '$idmenu'")->row_array();
+        $data['hari'] = $qu['hari'];
+        $this->mu->m_simpan_tmp();
+        $this->load->view("front/tableharian", $data);
+    }
+
+    public function show()
+    {
+        $hari = $_POST['hari'];
+        // $qu = $this->db->query("SELECT * FROM menu_makanan where id_menu = '$idmenu'")->row_array();
+        $data['hari'] = $hari;
+        $this->load->view("front/tableharian2", $data);
+    }
+
+    public function deletetmp()
+    {
+        $idtmp = $_POST['hapus2'];
+        $data['hari'] = $_POST['hari'];
+        $this->db->query("DELETE FROM tmp_pesan_harian where id_tmp_harian='$idtmp'");
+        ?>
+        <script>
+            alert("Data Berhasil Di hapus");
+        </script>
+    <?php
+        $this->load->view("front/tableharian", $data);
+    }
+
+    public function simpanharian()
+    {
+
+
+        $this->mu->m_simpan_harian();
+    ?>
+        <script>
+            alert("Data Berhasil Di Simpan");
+            document.location.href = '<?= base_url() ?>';
+        </script>
+    <?php
+    }
+    //====================================================================================================================
+
+    public function show2()
+    {
+
+        $this->load->view("front/tablepesta2");
+    }
+
+    public function simpantmp2()
+    {
+
+        $this->mu->m_simpan_tmp2();
+        $this->load->view("front/tablepesta1");
+    }
+
+    public function combo()
+    {
+
+        $this->load->view("front/combo");
+    }
+
+    public function deletetmp2()
+    {
+        $idtmp = $_POST['hapus2'];
+        $this->db->query("DELETE FROM tmp_pesan_pesta where id_tmp_pesta='$idtmp'");
+    ?>
+        <script>
+            alert("Data Berhasil Di hapus");
+        </script>
+
+    <?php
+        $this->load->view("front/tablepesta1");
+    }
+
+
+
+    public function simpanpesta()
+    {
+
+
+        $this->mu->m_simpan_pesta();
+    ?>
+        <script>
+            alert("Data Berhasil Di Simpan");
+            document.location.href = '<?= base_url() ?>';
+        </script>
+<?php
     }
 }
         
