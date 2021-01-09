@@ -72,4 +72,87 @@ class M_pelanggan extends CI_Model
     {
         return $this->db->query("UPDATE pelanggan SET status='1' where email='$email'");
     }
+
+    function m_simpan_tmp()
+    {
+        $idmenu = $_POST['namamenu'];
+        $jumlah = $_POST['jumlah'];
+        $idpel = $this->session->id;
+        $hari = $_POST['hari'];
+
+
+        return $this->db->query("INSERT INTO tmp_pesan_harian VALUES ('','$idmenu','$jumlah','$idpel','$hari')");
+    }
+
+
+
+
+    function m_simpan_harian()
+    {
+
+        $tanggals = $this->input->post('tanggal', TRUE);
+        $tanggal = date('Y-m-d', strtotime($tanggals));
+        $tot = $_POST['totalkes'];
+        $idpel = $this->session->id;
+        $hari = $_POST['hari'];
+        $idpesanan = $_POST['id_detail'];
+
+
+        $a = $this->db->query("INSERT INTO pesanan_harian (id_pesanan_harian,id_pesanan_pelanggan,tanggal,jumlah_bayar,status_pesanan) VALUES ('$idpesanan','$idpel','$tanggal','$tot','1')");
+
+        $b = $this->db->query("INSERT INTO detail_pesanan_harian (id_dt_pesanan_harian,id_dt_menu,dt_jumlah,dt_hari)SELECT '$idpesanan',tmp_id_menu,tmp_jumlah,tmp_hari from tmp_pesan_harian where tmp_hari='$hari' and tmp_id_pelanggan='$idpel'and tmp_id_pelanggan='$idpel'");
+
+        $c = $this->db->query("DELETE FROM tmp_pesan_harian where tmp_hari='$hari' and tmp_id_pelanggan='$idpel'");
+
+        return $a;
+        return $b;
+        return $c;
+    }
+
+    //=====================================================================================================================================
+
+    function m_simpan_tmp2()
+    {
+        $idmenu = $_POST['namamenu2'];
+        $jumlah = $_POST['jumlah'];
+        $idpel = $this->session->id;
+
+
+
+        return $this->db->query("INSERT INTO tmp_pesan_pesta VALUES ('','$idmenu','$jumlah','$idpel')");
+    }
+
+
+    function m_simpan_pesta()
+    {
+
+        $tanggals = $this->input->post('tanggal2', TRUE);
+        $tanggal = date('Y-m-d', strtotime($tanggals));
+        $tot = $_POST['totalkes'];
+        $idpel = $this->session->id;
+
+        $idpesanan = $_POST['id_detail'];
+
+
+        $a = $this->db->query("INSERT INTO pesanan_pesta (id_pesanan_pesta,id_pesanan_pelanggan,tanggal,jumlah_bayar,status_pesanan) VALUES ('$idpesanan','$idpel','$tanggal','$tot','1')");
+
+        $b = $this->db->query("INSERT INTO detail_pesanan_pesta (id_dt_pesanan_pesta,id_dt_menu,dt_jumlah)SELECT '$idpesanan',tmp_id_menu,tmp_jumlah from tmp_pesan_pesta where  tmp_id_pelanggan='$idpel'");
+
+        $c = $this->db->query("DELETE FROM tmp_pesan_pesta where  tmp_id_pelanggan='$idpel'");
+
+        return $a;
+        return $b;
+        return $c;
+    }
+    public function simpandata($textfile)
+    {
+        $id = $this->uri->segment(3);
+        return $this->db->query("UPDATE pesanan_harian set bukti_bayar='$textfile', status_pesanan='2' where id_pesanan_harian='$id'");
+    }
+
+    public function simpandata2($textfile)
+    {
+        $id = $this->uri->segment(3);
+        return $this->db->query("UPDATE pesanan_pesta set bukti_bayar='$textfile', status_pesanan='2' where id_pesanan_pesta='$id'");
+    }
 }
