@@ -64,7 +64,7 @@ $level = $this->session->userdata('level');
             <center>
               <p><b><?= $nama ?></b></p>
               <p><?= $level ?></p>
-              <a href="<?php echo site_url('admin/C_login/logout') ?>" class="btn btn-warning btn-flat">Logout</a>
+              <a href="<?php echo site_url('C_login/logout') ?>" class="btn btn-warning btn-flat">Logout</a>
             </center>
           </div>
         </li>
@@ -178,6 +178,30 @@ $level = $this->session->userdata('level');
     });
 
     $('#datepicker').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    })
+
+    $('#datepicker2').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    })
+
+    $('#datepicker3').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    })
+
+    $('#datepicker4').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    })
+    $('#datepicker5').datepicker({
+      autoclose: true,
+      todayHighlight: true
+    })
+
+    $('#datepicker6').datepicker({
       autoclose: true,
       todayHighlight: true
     })

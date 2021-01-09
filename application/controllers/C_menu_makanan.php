@@ -8,10 +8,12 @@ class C_menu_makanan extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->session->userdata('nama') && !$this->session->userdata('user')) {
+            $this->session->set_flashdata('msg', danger('Anda Harus Login Terlebih Dahulu!!!'));
+            redirect('C_login');
+        }
         $this->load->model('M_menu_makanan', 'mu');
         $this->load->library('upload');
-
-        //Do your magic here
     }
 
     public function index()

@@ -8,10 +8,10 @@ class C_home_admin extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        // if (!$this->session->userdata('nama') && !$this->session->userdata('user')) {
-        //     $this->session->set_flashdata('msg', danger('Anda Harus Login Terlebih Dahulu!!!'));
-        //     redirect('admin/C_login');
-        // }
+        if (!$this->session->userdata('nama') && !$this->session->userdata('user')) {
+            $this->session->set_flashdata('msg', danger('Anda Harus Login Terlebih Dahulu!!!'));
+            redirect('C_login');
+        }
     }
 
     public function index()

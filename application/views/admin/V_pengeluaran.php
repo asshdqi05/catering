@@ -83,11 +83,12 @@
                     </div>
                     <div class="form-group">
                         <label>jumlah</label>
-                        <textarea name="jumlah" class="form-control"></textarea>
+                        <input type="text" name="jumlah" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>keterangan</label>
-                        <input type="text" name="keterangan" class="form-control">
+                        <textarea name="keterangan" class="form-control"></textarea>
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -117,11 +118,11 @@
                     </div>
                     <div class="form-group">
                         <label>jumlah</label>
-                        <textarea name="jumlah" id="ejumlah" class="form-control"></textarea>
+                        <input type="text" name="jumlah" id="ejumlah" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>keterangan</label>
-                        <input type="text" name="keterangan" id="eketerangan" class="form-control">
+                        <textarea name="keterangan" id="eketerangan" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

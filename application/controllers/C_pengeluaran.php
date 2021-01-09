@@ -5,6 +5,10 @@ class C_pengeluaran extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->session->userdata('nama') && !$this->session->userdata('user')) {
+            $this->session->set_flashdata('msg', danger('Anda Harus Login Terlebih Dahulu!!!'));
+            redirect('C_login');
+        }
 
         $this->load->model('M_pengeluaran', 'mp');
         $this->load->library(array('form_validation', 'session'));
@@ -14,8 +18,8 @@ class C_pengeluaran extends CI_Controller
     {
         $d['datapengeluaran']   = $this->mp->get_data();
         $tempelate = array(
-            'mn_karyawan' => 'active',
-            'judul' => 'Data karyawan',
+            'mn_pengeluaran' => 'active',
+            'judul' => 'Data Pengeluaran',
             'konten' => $this->load->view('admin/V_pengeluaran', $d, true)
         );
         $this->parser->parse('admin/template/V_home_admin', $tempelate);
