@@ -29,14 +29,14 @@
     </li>
 
 
-    <!-- <li class="nav-item user-panel">
-    <a href="<?php echo site_url('C_pelanggan') ?>" class="nav-link 
+    <li class="nav-item user-panel">
+      <a href="<?php echo site_url('C_pelanggan') ?>" class="nav-link 
         <?php if (isset($mn_pelanggan)) echo $mn_pelanggan;
         else echo ""; ?>">
-      <i class="fa fa-users"></i>
-      <p>Data Pelanggan</p>
-    </a>
-  </li> -->
+        <i class="fa fa-users"></i>
+        <p>Data Pelanggan</p>
+      </a>
+    </li>
 
     <li class="nav-item user-panel has-treeview <?php if (isset($mn_open)) echo $mn_open;
                                                 else echo ""; ?>">

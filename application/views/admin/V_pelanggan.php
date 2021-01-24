@@ -37,7 +37,8 @@
                                                                                 '<?php echo $d['nama_pelanggan'] ?>',
                                                                                 '<?php echo $d['alamat'] ?>', 
                                                                                 '<?php echo $d['nohp'] ?>',                                                                                
-                                                                                '<?php echo $d['email'] ?>')">
+                                                                                '<?php echo $d['email'] ?>',
+                                                                                '<?php echo $d['password'] ?>')">
                                         <i class="fa fa-pencil" style="color: #3c763d"></i>
                                     </a>
                                     <a href="javascript:void(0)" onclick="hapus('<?php echo $d['id_pelanggan'] ?>','<?php echo $d['nama_pelanggan'] ?>')">
@@ -56,12 +57,13 @@
 </div>
 
 <script>
-    function edit(kode, nama, alamat, nohp, email) {
+    function edit(kode, nama, alamat, nohp, email, password) {
         $('#ekode').val(kode);
         $('#enama').val(nama);
         $('#ealamat').val(alamat);
         $('#enohp').val(nohp);
         $('#eemail').val(email);
+        $('#epassword').val(password);
         $('#edit_data').modal('show');
     }
 
@@ -98,6 +100,11 @@
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" name="email" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -138,6 +145,11 @@
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" name="email" id="eemail" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" id="epassword" class="form-control">
                     </div>
 
 

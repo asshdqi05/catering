@@ -31,14 +31,31 @@ class C_pelanggan extends CI_Controller
 
     public function add()
     {
-        $this->mu->save();
+        $kode = $this->mu->kode();
+        $insert = array(
+            'id_pelanggan' => $kode,
+            'nama_pelanggan' => $this->input->post('namapelanggan'),
+            'alamat' => $this->input->post('alamat'),
+            'nohp' => $this->input->post('nohp'),
+            'email' => $this->input->post('email'),
+            'password' => $this->input->post('password'),
+            'status' => '1'
+        );
+        $this->db->insert('pelanggan', $insert);
         $this->session->set_flashdata('msg', success('Data berhasil disimpan.'));
         redirect('C_pelanggan');
     }
 
     public function edit()
     {
-        $this->mu->update();
+        $this->db->set('nama_pelanggan', $this->input->post('nama'));
+        $this->db->set('alamat', $this->input->post('alamat'));
+        $this->db->set('nohp', $this->input->post('nohp'));
+        $this->db->set('email', $this->input->post('email'));
+        $this->db->set('password', $this->input->post('password'));
+        $this->db->where('id_pelanggan', $this->input->post('kode'));
+        $this->db->update('pelanggan');
+
         $this->session->set_flashdata('msg', success('Data berhasil diupdate.'));
         redirect('C_pelanggan');
     }
