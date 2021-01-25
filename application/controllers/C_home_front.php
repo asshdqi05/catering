@@ -39,7 +39,7 @@ class C_home_front extends CI_Controller
 
                 $tglaktif = date("d-m-Y H:i:s");
                 $subject      = 'Konfirmasi Email ...';
-                $message      = "<html><body>Halooo! <b> " . $row['nama_pelanggan'] . "</b> ... <br> Hari ini pada tanggal <span style='color:red'>$tglaktif</span> Anda Mendaftar Ke Website Kami
+                $message      = "<html><body>Halooo! <b> " . @$row['nama_pelanggan'] . "</b> ... <br> Hari ini pada tanggal <span style='color:red'>$tglaktif</span> Anda Mendaftar Ke Website Kami
 					
 					<br> Email Login : <b style='color:red'>$email</b>
 					<br> Silahkan Konfirmasi : <a target='_blank' href='" . base_url() . "C_home_front/konfirmasi/" . $email2 . "'>Disini</a> <br>
