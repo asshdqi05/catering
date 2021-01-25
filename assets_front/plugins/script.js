@@ -156,10 +156,8 @@ $('#datepicker2').datepicker({
 autoclose: true,
 changeMonth: true,
 changeYear: true,
-startDate: "dateToday",
+startDate: '+4d',
 format: 'dd-mm-yyyy',
-minDate: new Date(),
-
 orientation: "bottom auto",
 
 });

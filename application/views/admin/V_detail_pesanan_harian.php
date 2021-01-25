@@ -106,7 +106,7 @@
                 <label>Bukti Pembayaran</label>
                 <div class="col-sm-12">
                     <div class="col-sm-6">
-                        <img src="<?php echo base_url('foto/bukti_pembayaran/') . $d['bukti_bayar']; ?>" class="img-thumbnail">
+                        <img src="<?php echo base_url('foto/foto_bukti/') . $d['bukti_bayar']; ?>" class="img-thumbnail">
                     </div>
                 </div>
             </div>

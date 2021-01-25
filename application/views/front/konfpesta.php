@@ -9,7 +9,8 @@
                     <thead>
                         <tr>
                             <th>Pesanan Tanggal</th>
-                            <th>Jumlah Bayar</th>
+                            <th>Total Bayar</th>
+                            <th>DP</th>
                             <th>Status</th>
                             <th>Action</th>
 
@@ -25,6 +26,7 @@
                             <tr>
                                 <td><?= $row['tanggal'] ?></td>
                                 <td>Rp. <?= number_format($row['jumlah_bayar'], 0, ',', '.') ?></td>
+                                <td>Rp. <?= number_format($row['jumlah_bayar'] / 2, 0, ',', '.') ?></td>
                                 <?php
                                 if ($row['status_pesanan'] == '1') {
                                     $stts = "Harap Kirim Bukti Pembayaran";
@@ -85,7 +87,7 @@ foreach ($query2->result_array() as $row2) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= base_url('Konfirmasi/knf/' . $row2['id_pesanan_pesta']) ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('Konfirmasi/knf2/' . $row2['id_pesanan_pesta']) ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
                         <table style="color: black;">
                             <tr>
                                 <th>Foto : </th>

@@ -10,6 +10,7 @@
                         <tr>
                             <th>Pesanan Tanggal</th>
                             <th>Jumlah Bayar</th>
+                            <th>DP</th>
                             <th>Status</th>
                             <th>Action</th>
 
@@ -25,6 +26,8 @@
                             <tr>
                                 <td><?= $row['tanggal'] ?></td>
                                 <td>Rp. <?= number_format($row['jumlah_bayar'], 0, ',', '.') ?></td>
+                                <td>Rp. <?= number_format($row['jumlah_bayar'] / 2, 0, ',', '.') ?></td>
+
                                 <?php
                                 if ($row['status_pesanan'] == '1') {
                                     $stts = "Harap Kirim Bukti Pembayaran";

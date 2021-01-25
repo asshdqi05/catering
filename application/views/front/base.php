@@ -179,8 +179,9 @@
     <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
 
     <!-- Vendor JS Files -->
-    <!-- <script src="<?php echo base_url('assets_front') ?>/vendor/jquery/jquery.min.js"></script> -->
-    <script src="<?php echo base_url('assets_front') ?>/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo base_url('assets_front') ?>/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="<?php echo base_url('assets_front') ?>/jquery-3.4.1.min.js"></script> -->
+    <script src="<?php echo base_url('assets_front') ?>/plugins/ui.js"></script>
     <script src="<?php echo base_url('assets_front') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url('assets_front') ?>/vendor/jquery.easing/jquery.easing.min.js"></script>
     <script src="<?php echo base_url('assets_front') ?>/vendor/php-email-form/validate.js"></script>
@@ -191,6 +192,7 @@
     <!-- <script src="<?php echo base_url('assets_front') ?>/plugins/jquery/jquery.min.js"></script> -->
     <script src="<?php echo base_url('assets_front') ?>/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="<?php echo base_url('assets_front') ?>/plugins/script.js"></script>
+
 
     <!-- Template Main JS File -->
     <script src="<?php echo base_url('assets_front') ?>/js/main.js"></script>
