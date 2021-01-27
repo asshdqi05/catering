@@ -22,8 +22,10 @@
                             } else if ($d['status_pesanan'] == 2) {
                                 $status = "Menunggu Konfirmasi";
                             } else if ($d['status_pesanan'] == 3) {
-                                $status = "Dikonfirmasi";
-                            } else {
+                                $status = "Dikonfirmasi - Belum Lunas";
+                            } else if ($d['status_pesanan'] == 5) {
+                                $status = "Lunas";
+                            } else if ($d['status_pesanan'] == 4) {
                                 $status = "Batal";
                             }
                         ?>
@@ -37,6 +39,17 @@
                                     <a class="btn btn-block btn-info" href="<?= site_url('C_data_pesanan_masuk/detail_pesanan_harian/' . $d['id_pesanan_harian']) ?>">
                                         <i class="fa fa-eye" style="color: whitesmoke">Detail</i>
                                     </a>
+                                    <?php
+                                    if ($d['status_pesanan'] == 3) {
+                                    ?>
+                                        <a class="btn btn-block btn-success" href="javascript:void(0)" onclick="pembayaran( 
+                                        '<?php echo $d['id_pesanan_harian'] ?>',
+                                        '<?php echo $d['jumlah_bayar'] ?>',
+                                        '<?php echo $d['jumlah_bayar'] / 2 ?>'
+                                    )">
+                                            <i class="fa fa-money" style="color: whitesmoke"> Pembayaran</i>
+                                        </a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php $no++;
@@ -45,6 +58,50 @@
                 </table>
 
             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function pembayaran(id, jumlah_bayar, sisa_bayar) {
+        $('#id').val(id);
+        $('#jumlah_bayar').val(jumlah_bayar);
+        $('#sisa_bayar').val(sisa_bayar);
+        $('#bayar').val(sisa_bayar);
+        $('#pembayaran').modal('show');
+    }
+</script>
+
+<div class="modal fade" id="pembayaran">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Pembayaran Catering</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form role="form" method="POST" action="<?php echo site_url('C_data_pesanan_masuk/pembayaran_harian') ?>">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Total</label>
+                        <input type="hidden" name="kode" id="id" class="form-control">
+                        <input type="text" readonly name="jumlah_bayar" id="jumlah_bayar" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sisa Pembayaran</label>
+                        <input type="text" readonly name="sisa_bayar" id="sisa_bayar" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pembayaran</label>
+                        <input type="text" readonly name="bayar" id="bayar" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary"><i class="icon-floppy-disk"></i> Simpan</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="icon-cross2"></i> Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

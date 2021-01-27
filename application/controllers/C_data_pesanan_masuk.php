@@ -84,6 +84,28 @@ class C_data_pesanan_masuk extends CI_Controller
         $this->session->set_flashdata('msg', success('Pesanan Harian berhasil dikonfirmasi.'));
         redirect('C_data_pesanan_masuk/pesanan_harian');
     }
+
+    public function pembayaran_pesta()
+    {
+        $id = $this->input->post('kode');
+        $this->db->set('status_pesanan', 5);
+        $this->db->where('id_pesanan_pesta', $id);
+        $this->db->update('pesanan_pesta');
+
+        $this->session->set_flashdata('msg', success('Pembayaran Pesanan Pesta berhasil Disimpan.'));
+        redirect('C_data_pesanan_masuk/pesanan_pesta');
+    }
+
+    public function pembayaran_harian()
+    {
+        $id = $this->input->post('kode');
+        $this->db->set('status_pesanan', 5);
+        $this->db->where('id_pesanan_harian', $id);
+        $this->db->update('pesanan_harian');
+
+        $this->session->set_flashdata('msg', success('Pembayaran Pesanan Harian berhasil Disimpan.'));
+        redirect('C_data_pesanan_masuk/pesanan_harian');
+    }
 }
         
     /* End of file  C_karyawan.php */
